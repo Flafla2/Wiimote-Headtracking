@@ -14,7 +14,8 @@ public class PerspectiveShifter : MonoBehaviour {
         if (Controller == null)
             return;
 
-        float aspect = Screen.width / Screen.height;
+        Rect r = Controller.pixelRect;
+        float aspect = r.width / r.height;
         float WindowWidth = aspect * WindowHeight;
         Vector3 pos = Controller.transform.localPosition;
 
@@ -62,7 +63,11 @@ public class PerspectiveShifter : MonoBehaviour {
 
     void OnDrawGizmos()
     {
-        float WindowWidth =  Screen.width / Screen.height * WindowHeight;
+        if (Controller == null)
+            return;
+
+        Rect r = Controller.pixelRect;
+        float WindowWidth =  r.width / r.height * WindowHeight;
 
         Matrix4x4 rotationMatrix = Matrix4x4.TRS(transform.position, transform.rotation, Vector3.one);
         Gizmos.matrix = rotationMatrix;

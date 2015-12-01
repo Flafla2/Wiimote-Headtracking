@@ -20,6 +20,12 @@ public class WiimoteHandler : MonoBehaviour {
         Singleton = null;
     }
 
+    void OnApplicationQuit()
+    {
+        while (WiimoteManager.Wiimotes.Count > 0)
+            WiimoteManager.Cleanup(WiimoteManager.Wiimotes[0]);
+    }
+
     void Start () {
         if(Singleton != null)
         {
