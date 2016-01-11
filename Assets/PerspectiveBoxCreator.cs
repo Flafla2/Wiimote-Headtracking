@@ -38,10 +38,10 @@ public class PerspectiveBoxCreator : MonoBehaviour {
         Down.localRotation  = Quaternion.LookRotation(Vector3.down, Vector3.forward);
         Back.localRotation  = Quaternion.LookRotation(Vector3.forward, Vector3.up);
 
-        Left.localScale = new Vector3(WindowHeight, Depth + 0.1f, 1);
-        Right.localScale= new Vector3(WindowHeight, Depth + 0.1f, 1);
-        Up.localScale   = new Vector3(WindowWidth, Depth + 0.1f, 1);
-        Down.localScale = new Vector3(WindowWidth, Depth + 0.1f, 1);
+        Left.localScale = new Vector3(WindowHeight, Depth + 1f, 1);
+        Right.localScale= new Vector3(WindowHeight, Depth + 1f, 1);
+        Up.localScale   = new Vector3(WindowWidth, Depth + 1f, 1);
+        Down.localScale = new Vector3(WindowWidth, Depth + 1f, 1);
         Back.localScale = new Vector3(WindowWidth, WindowHeight, 1);
     }
 }

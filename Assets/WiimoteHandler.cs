@@ -22,6 +22,7 @@ public class WiimoteHandler : MonoBehaviour {
 
     void OnApplicationQuit()
     {
+        Debug.Log("Cleanup");
         while (WiimoteManager.Wiimotes.Count > 0)
             WiimoteManager.Cleanup(WiimoteManager.Wiimotes[0]);
     }
@@ -41,10 +42,19 @@ public class WiimoteHandler : MonoBehaviour {
             remote.SetupIRCamera();
         }
 	}
+
+    private int led = 0;
 	
 	void Update () {
         if (!WiimoteManager.HasWiimote())
             return;
+
+        int led_tentative = (int)(Time.time * 2) % 4;
+        if(led != led_tentative)
+        {
+            led = led_tentative;
+            WiimoteManager.Wiimotes[0].SendPlayerLED(led == 0, led == 1, led == 2, led == 3);
+        }
 
         int ret;
         do

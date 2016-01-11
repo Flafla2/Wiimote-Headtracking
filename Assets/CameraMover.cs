@@ -12,12 +12,11 @@ public class CameraMover : MonoBehaviour {
 
     public Transform CameraToMove;
 
-    private Vector3 desired = Vector3.zero;
+    private Vector3 desired = new Vector3(0,0,0.3f);
 	
 	void Update () {
-        if (Input.GetMouseButtonDown(0))
-            WiimoteOffset.z = 0.5f - CameraToMove.localPosition.z; // Assume 50cm distance
-
+        if (desired.z > 0.3f)
+            desired.z = 0.3f; // Makes sure that the camera frustum doesn't get corrupted
         CameraToMove.localPosition += (desired-CameraToMove.localPosition)/2 * Time.deltaTime * 60;
         if (WiimoteHandler.PrimaryRemote == null)
             return;
