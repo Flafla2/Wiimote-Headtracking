@@ -15,6 +15,9 @@ public class CameraMover : MonoBehaviour {
     private Vector3 desired = Vector3.zero;
 	
 	void Update () {
+        if (Input.GetMouseButtonDown(0))
+            WiimoteOffset.z = 0.5f - CameraToMove.localPosition.z; // Assume 50cm distance
+
         CameraToMove.localPosition += (desired-CameraToMove.localPosition)/2 * Time.deltaTime * 60;
         if (WiimoteHandler.PrimaryRemote == null)
             return;
